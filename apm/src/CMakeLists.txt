@@ -1,5 +1,5 @@
-set(HDF5_DIR "/home/dastu08/develop/master-thesis/apm/HDF5-1.14.0-Linux/HDF_Group/HDF5/1.14.0")
-set(APM_DIR "/home/dastu08/develop/master-thesis/apm")
+set(HDF5_DIR "${PROJECT_SOURCE_DIR}/HDF5-1.14.0-Linux/HDF_Group/HDF5/1.14.0")
+set(APM_DIR "${PROJECT_SOURCE_DIR}/apm")
 
 add_library(apm STATIC
   apm.cpp 
