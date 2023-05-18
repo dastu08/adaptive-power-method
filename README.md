@@ -1,9 +1,9 @@
 # Adaptive Power Method (APM)
 
-This project is an implementation of the Adaptive Power Method which I use in my
-master thesis [[1]()]. It simulates a random walk on an Erdős-Rény random graph
-to compute the scaled culumant generating function (SCGF) and rate function for
-the time-additive observable of the mean degree.
+This project is an implementation of the Adaptive Power Method (APM) which I use
+in my master thesis [[1]()]. It simulates a random walk on an Erdős-Rényi random
+graph to compute the scaled culumant generating function (SCGF) and rate
+function for the time-additive observable of the mean degree.
 
 **Table of Contents**
 - [Adaptive Power Method (APM)](#adaptive-power-method-apm)
@@ -12,29 +12,31 @@ the time-additive observable of the mean degree.
     - [Compiling](#compiling)
     - [Usage](#usage)
     - [Data](#data)
+    - [Library](#library)
     - [License](#license)
     - [Software versions](#software-versions)
 
 ---
 
 ## Project Structure
-This project consists of a library `apm` in the `apm/` subfolder an the main
+This project consists of a library `apm` in the `apm/` subfolder and the main
 file `main.cpp` for the executable `simapm` defined in `CMakeLists.txt`. 
 
 To just use the program check the [prerequisites](#prerequities) and then go to
-the [compiling](#compiling) section. How to use the program is described in
-[usage](#usage).
+the [compiling](#compiling) section. After that check out the [usage](#usage)
+section to learn how to use the program and the command line arguments that it
+has.
 
 If you want to use the `apm` library in another project just add the following
 lines to your `CMakeLists.txt` file before you define an executable with
-`add_executable()`,
+`add_executable()`.
 ```cmake
 set(APM_DIR "<path-to-apm-sub-folder>")
 add_subdirectory("${APM_DIR}/src" "${APM_DIR}/build")
 link_libraries(apm)
 ```
 
-Have a look at `main.cpp` to see how you can use the `apm` function in your
+Have a look at `main.cpp` to see how you can use the `apm` functions in your
 project. 
 
 ## Prerequities
@@ -105,7 +107,7 @@ Below you find a list of the possible keys and a description of what they do.
 | `-e 10`     | Run the APM for 10 epochs if the mode used transfer learning (`transfer` or `ratefunc`)                                 |
 
 
-The following example show the most common use cases and which arguments they
+The following example shows the most common use cases and which arguments they
 need. It is assumed that you have compiled the executable `simapm` as described
 in the section [compiling](#compiling).
 
@@ -168,6 +170,10 @@ averaging is larger than 1.
 | `edgeList_left`/`edgeList_right` | pairs describing the edges of the graph             |
 
 > You can easily load the data into python with the `h5py` package. 
+
+## Library
+
+
 
 ## License
 This projected is licensed under the GPL-3.0 license found in the file
