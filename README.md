@@ -96,22 +96,23 @@ second the average node degree. All other pairs have only one value.
 
 Below you find a list of the possible keys and a description of what they do.
 
-| Key         | Description                                                                                                             |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `-g 100 3`  | Graph size is 100 nodes with mean degree 3                                                                              |
-| `-t 10000`  | run 10000 time steps                                                                                                    |
-| `-s -0.5`   | value for the control parameter s                                                                                       |
-| `-f ./data` | Directory where the output file will be written to. WATCH OUT that the the directory MUST EXIST before you run the APM. |
-| `-a 0.1`    | Value of the exponent in the learning rate                                                                              |
-| `-r 100`    | Repeat the APM 100 times and average the obtained quantities                                                            |
-| `-e 10`     | Run the APM for 10 epochs if the mode used transfer learning (`transfer` or `ratefunc`)                                 |
+| Key         | Description                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------- |
+| `-g 100 3`  | Graph size is 100 nodes with mean degree 3                                                    |
+| `-t 10000`  | run 10000 time steps                                                                          |
+| `-s -0.5`   | value for the control parameter s                                                             |
+| `-f ./data` | Directory where the output file will be written to. If it does not exists the APM will abort. |
+| `-a 0.1`    | Value of the exponent in the learning rate                                                    |
+| `-r 100`    | Repeat the APM 100 times and average the obtained quantities                                  |
+| `-e 10`     | Run the APM for 10 epochs if the mode used transfer learning (`transfer` or `ratefunc`)       |
 
 
 The following example shows the most common use cases and which arguments they
 need. It is assumed that you have compiled the executable `simapm` as described
 in the section [compiling](#compiling).
 
-> You need to create the data folder `data` before running the commands.
+> You need to create the data folder manually `data` before running the
+> commands.
 ```bash
 # run the APM once
 ./build/simapm single -g 50 3 -s 1 -t 10000 -a 0.1 -f "./data" -p "demo" 
