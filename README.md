@@ -3,7 +3,7 @@
 This project is an implementation of the Adaptive Power Method (APM) which I use
 in my master thesis [[1]()]. It simulates a random walk on an Erdős-Rényi random
 graph to compute the scaled culumant generating function (SCGF) and rate
-function for the time-additive observable of the mean degree.
+function of the mean degree a time additive observable.
 
 **Table of Contents**
 - [Adaptive Power Method (APM)](#adaptive-power-method-apm)
@@ -111,8 +111,7 @@ The following example shows the most common use cases and which arguments they
 need. It is assumed that you have compiled the executable `simapm` as described
 in the section [compiling](#compiling).
 
-> You need to create the data folder manually `data` before running the
-> commands.
+**You need to create the data folder manually `data` before running the commands.**
 ```bash
 # run the APM once
 ./build/simapm single -g 50 3 -s 1 -t 10000 -a 0.1 -f "./data" -p "demo" 
