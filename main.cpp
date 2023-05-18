@@ -1,4 +1,5 @@
 #include <cmath>
+#include <filesystem>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -46,6 +47,8 @@ int main(int argc, char **argv) {
 
   vString arg_mode_list;
 
+  bool pathStatus = false;
+
   // check if we got a valid mode
   if (argc <= 1) {
     std::cout << "[Error]\t[main]\t no arguments where given.\n";
@@ -59,6 +62,14 @@ int main(int argc, char **argv) {
 
   // parse and check the command line arguments
   if (parseArgs(params, times, sVals, alphaVals, learningrate, argc, argv)) {
+    return 1;
+  }
+
+  // check initially if the data folder exists to prevent an error at the end
+  pathStatus = std::filesystem::exists(params.data_folder);
+  if (!pathStatus) {
+    std::cout << "The folder: " << params.data_folder
+              << " does not exist. Aborting!\n";
     return 1;
   }
 
