@@ -3,7 +3,7 @@
 This project is an implementation of the Adaptive Power Method (APM) which I use
 in my master thesis [[1]()]. It simulates a random walk on an Erdős-Rényi random
 graph to compute the scaled culumant generating function (SCGF) and rate
-function for the time-additive observable of the mean degree.
+function of the mean degree a time additive observable.
 
 **Table of Contents**
 - [Adaptive Power Method (APM)](#adaptive-power-method-apm)
@@ -96,22 +96,22 @@ second the average node degree. All other pairs have only one value.
 
 Below you find a list of the possible keys and a description of what they do.
 
-| Key         | Description                                                                                                             |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `-g 100 3`  | Graph size is 100 nodes with mean degree 3                                                                              |
-| `-t 10000`  | run 10000 time steps                                                                                                    |
-| `-s -0.5`   | value for the control parameter s                                                                                       |
-| `-f ./data` | Directory where the output file will be written to. WATCH OUT that the the directory MUST EXIST before you run the APM. |
-| `-a 0.1`    | Value of the exponent in the learning rate                                                                              |
-| `-r 100`    | Repeat the APM 100 times and average the obtained quantities                                                            |
-| `-e 10`     | Run the APM for 10 epochs if the mode used transfer learning (`transfer` or `ratefunc`)                                 |
+| Key         | Description                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------- |
+| `-g 100 3`  | Graph size is 100 nodes with mean degree 3                                                    |
+| `-t 10000`  | run 10000 time steps                                                                          |
+| `-s -0.5`   | value for the control parameter s                                                             |
+| `-f ./data` | Directory where the output file will be written to. If it does not exists the APM will abort. |
+| `-a 0.1`    | Value of the exponent in the learning rate                                                    |
+| `-r 100`    | Repeat the APM 100 times and average the obtained quantities                                  |
+| `-e 10`     | Run the APM for 10 epochs if the mode used transfer learning (`transfer` or `ratefunc`)       |
 
 
 The following example shows the most common use cases and which arguments they
 need. It is assumed that you have compiled the executable `simapm` as described
 in the section [compiling](#compiling).
 
-> You need to create the data folder `data` before running the commands.
+**You need to create the data folder manually `data` before running the commands.**
 ```bash
 # run the APM once
 ./build/simapm single -g 50 3 -s 1 -t 10000 -a 0.1 -f "./data" -p "demo" 
@@ -123,6 +123,12 @@ in the section [compiling](#compiling).
 ./build/simapm ratefunc -g 50 3 -s 1 -t 1000 -a 0.1 -f "./data" -p "demo" -r 100 -e 50
 # run the APM and the power method for the same graph
 ./build/simapm "power,single" -g 50 3 -s 1 -t 10000 -r 100 -a 0.1 -f "./data" -p "demo"
+```
+
+If you want to run the APM on the same graph realization but for different values of `-t`, `-s` or `-a` then
+just specify them multiple time in the argument list. For example:
+```bash
+./build/simapm single -g 50 3 -s 1 -s -1 -t 1000 -t 5000 -a 0.1 -a 0.5 -f "./data" -p "demo"
 ```
 
 ## Data
@@ -173,6 +179,27 @@ averaging is larger than 1.
 
 ## Library
 
+The `apm` library is spread over several files but all use the namespace `apm`.
+You can set how much logging output in the terminal you want by optionally
+defining the following in `general.h`.
+```cpp
+#define LOG_DEBUG
+#define LOG_VERBOSE
+```
+ Below you find a short description of which functions and
+classes to find in which file.
+
+| File            | Description                                       |
+| --------------- | ------------------------------------------------- |
+| `apm.h`         | Adaptive Power Method                             |
+| `data2hdf5.h`   | Save data to HDF5 files                           |
+| `eigenSolver.h` | Wrapper to use LAPACK's `dgeev` eigenvalue solver |
+| `general.h`     | Define general use functions and classes          |
+| `graph.h`       | Graph class and generation                        |
+| `parser.h`      | Command line parameters and how to parse them     |
+| `power.h`       | Power Method                                      |
+| `rng.h`         | Random Number Generator                           |
+| `testing.h`     | Run some tests                                    |
 
 
 ## License
