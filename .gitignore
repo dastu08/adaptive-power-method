@@ -1,32 +1,9 @@
-# Prerequisites
-*.d
+# build folder
+build/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# HDF5 library
+*.tar.gz
+HDF5-1.14.0-Linux/
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# data output
+data/
