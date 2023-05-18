@@ -125,6 +125,12 @@ in the section [compiling](#compiling).
 ./build/simapm "power,single" -g 50 3 -s 1 -t 10000 -r 100 -a 0.1 -f "./data" -p "demo"
 ```
 
+If you want to run the APM on the same graph realization but for different values of `-t`, `-s` or `-a` then
+just specify them multiple time in the argument list. For example:
+```bash
+./build/simapm single -g 50 3 -s 1 -s -1 -t 1000 -t 5000 -a 0.1 -a 0.5 -f "./data" -p "demo"
+```
+
 ## Data
 The data produced by `simapm` is saved in HDF5 files ending in `.h5`. You can
 inspect these files with the HDF5 tool `h5ls <file>`. A typical output of the
@@ -173,6 +179,27 @@ averaging is larger than 1.
 
 ## Library
 
+The `apm` library is spread over several files but all use the namespace `apm`.
+You can set how much logging output in the terminal you want by optionally
+defining the following in `general.h`.
+```cpp
+#define LOG_DEBUG
+#define LOG_VERBOSE
+```
+ Below you find a short description of which functions and
+classes to find in which file.
+
+| File            | Description                                       |
+| --------------- | ------------------------------------------------- |
+| `apm.h`         | Adaptive Power Method                             |
+| `data2hdf5.h`   | Save data to HDF5 files                           |
+| `eigenSolver.h` | Wrapper to use LAPACK's `dgeev` eigenvalue solver |
+| `general.h`     | Define general use functions and classes          |
+| `graph.h`       | Graph class and generation                        |
+| `parser.h`      | Command line parameters and how to parse them     |
+| `power.h`       | Power Method                                      |
+| `rng.h`         | Random Number Generator                           |
+| `testing.h`     | Run some tests                                    |
 
 
 ## License
