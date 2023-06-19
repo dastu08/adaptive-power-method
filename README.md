@@ -1,7 +1,7 @@
 # Adaptive Power Method (APM)
 
 This project is an implementation of the Adaptive Power Method (APM) which I use
-in my master thesis [[1]()]. It simulates a random walk on an Erdős-Rényi random
+in my master thesis [[1](http://urn.kb.se/resolve?urn=urn:nbn:se:su:diva-218160)]. It simulates a random walk on an Erdős-Rényi random
 graph to compute the scaled culumant generating function (SCGF) and rate
 function of the mean degree a time additive observable.
 
